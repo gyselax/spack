@@ -1,5 +1,5 @@
 diff --git a/repos/spack_repo/builtin/packages/ginkgo/package.py b/repos/spack_repo/builtin/packages/ginkgo/package.py
-index a8a2222ab0..b6a3a216c0 100644
+index a8a2222a..b6a3a216 100644
 --- a/repos/spack_repo/builtin/packages/ginkgo/package.py
 +++ b/repos/spack_repo/builtin/packages/ginkgo/package.py
 @@ -5,10 +5,6 @@
@@ -31,7 +31,7 @@ index a8a2222ab0..b6a3a216c0 100644
                  args.append(
                      self.define("CMAKE_MODULE_PATH", self.spec["hip"].prefix.lib.cmake.hip)
 diff --git a/repos/spack_repo/builtin/packages/kokkos/package.py b/repos/spack_repo/builtin/packages/kokkos/package.py
-index dd733c4d60..1cb90c86ba 100644
+index dd733c4d..e7db9efa 100644
 --- a/repos/spack_repo/builtin/packages/kokkos/package.py
 +++ b/repos/spack_repo/builtin/packages/kokkos/package.py
 @@ -3,9 +3,7 @@
@@ -45,16 +45,25 @@ index dd733c4d60..1cb90c86ba 100644
  
  from spack.package import *
  
-@@ -441,7 +439,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
-     @property
-     def kokkos_cxx(self) -> str:
-         if self.spec.satisfies("+wrapper"):
--            return self["kokkos-nvcc-wrapper"].kokkos_cxx
-+            return self.spec["kokkos-nvcc-wrapper"].kokkos_cxx
-         # Assumes build-time globals have been set already
-         return spack_cxx
+@@ -438,12 +436,11 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
+             if option:
+                 spack_options.append(option)
  
-@@ -535,7 +533,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
+-    @property
+-    def kokkos_cxx(self) -> str:
+-        if self.spec.satisfies("+wrapper"):
+-            return self["kokkos-nvcc-wrapper"].kokkos_cxx
+-        # Assumes build-time globals have been set already
+-        return spack_cxx
++    def setup_dependent_package(self, module, dependent_spec):
++        if "+wrapper" in self.spec:
++            self.spec.kokkos_cxx = self.spec["kokkos-nvcc-wrapper"].kokkos_cxx
++        else:
++            self.spec.kokkos_cxx = spack_cxx
+ 
+     def cmake_args(self):
+         spec = self.spec
+@@ -535,7 +532,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
          )
  
          # Remove duplicate options
@@ -63,7 +72,7 @@ index dd733c4d60..1cb90c86ba 100644
  
      test_script_relative_path = join_path("scripts", "spack_test")
  
-@@ -570,7 +568,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
+@@ -570,7 +567,7 @@ class Kokkos(CMakePackage, CudaPackage, ROCmPackage):
          cmake = self.spec["cmake"].command
          cmake_args = ["-DEXECUTABLE_OUTPUT_PATH=" + cmake_path]
          if self.spec.satisfies("+rocm"):
@@ -73,7 +82,7 @@ index dd733c4d60..1cb90c86ba 100644
  
          cmake(cmake_path, *cmake_args)
 diff --git a/repos/spack_repo/builtin/packages/kokkos_fft/package.py b/repos/spack_repo/builtin/packages/kokkos_fft/package.py
-index 5bfbd2c61a..85369df9f6 100644
+index 5bfbd2c6..85369df9 100644
 --- a/repos/spack_repo/builtin/packages/kokkos_fft/package.py
 +++ b/repos/spack_repo/builtin/packages/kokkos_fft/package.py
 @@ -2,8 +2,6 @@
@@ -97,7 +106,7 @@ index 5bfbd2c61a..85369df9f6 100644
  
          return args
 diff --git a/repos/spack_repo/builtin/packages/kokkos_kernels/package.py b/repos/spack_repo/builtin/packages/kokkos_kernels/package.py
-index 41e6ebf147..a84c2fc0eb 100644
+index 41e6ebf1..a84c2fc0 100644
 --- a/repos/spack_repo/builtin/packages/kokkos_kernels/package.py
 +++ b/repos/spack_repo/builtin/packages/kokkos_kernels/package.py
 @@ -1,9 +1,6 @@
@@ -120,7 +129,7 @@ index 41e6ebf147..a84c2fc0eb 100644
          if self.run_tests:
              options.append(self.define("KokkosKernels_ENABLE_TESTS", True))
 diff --git a/repos/spack_repo/builtin/packages/kokkos_nvcc_wrapper/package.py b/repos/spack_repo/builtin/packages/kokkos_nvcc_wrapper/package.py
-index ba820d059b..7d7a6b3db1 100644
+index ba820d05..7d7a6b3d 100644
 --- a/repos/spack_repo/builtin/packages/kokkos_nvcc_wrapper/package.py
 +++ b/repos/spack_repo/builtin/packages/kokkos_nvcc_wrapper/package.py
 @@ -3,8 +3,6 @@
@@ -144,7 +153,7 @@ index ba820d059b..7d7a6b3db1 100644
          env.set("CUDA_ROOT", dependent_spec["cuda"].prefix)
          env.set("NVCC_WRAPPER_DEFAULT_COMPILER", self.compiler.cxx)
 diff --git a/repos/spack_repo/builtin/packages/kokkos_tools/package.py b/repos/spack_repo/builtin/packages/kokkos_tools/package.py
-index 88ae81f8a9..c27751b3df 100644
+index 88ae81f8..c27751b3 100644
 --- a/repos/spack_repo/builtin/packages/kokkos_tools/package.py
 +++ b/repos/spack_repo/builtin/packages/kokkos_tools/package.py
 @@ -2,8 +2,6 @@
