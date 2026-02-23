@@ -6,7 +6,7 @@ from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 from spack.package import *
 
-from spack_repo.builtin.packages.pdi.package import Pdi
+from ..pdi.package import Pdi
 
 
 class PdipluginDeclNetcdf(CMakePackage):
@@ -30,8 +30,10 @@ class PdipluginDeclNetcdf(CMakePackage):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
 
+    depends_on("cmake@3.22.1:", type=("build"), when="@1.10.0:")
     depends_on("cmake@3.16.3:", type=("build"))
     depends_on("mpi", when="+mpi")
+    depends_on("netcdf-c@4.8.1:4", type=("link"), when="@1.10.0:")
     depends_on("netcdf-c@4.7.3:4", type=("link"))
     depends_on("netcdf-c+mpi", type=("link"), when="+mpi")
     for v in Pdi.versions:
