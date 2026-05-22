@@ -118,7 +118,7 @@ class CrayMpich(MpichEnvironmentModifications, Package, CudaPackage, ROCmPackage
 
     def setup_dependent_build_environment(self, env, dependent_spec):
         if self.spec.satisfies("+gtl"):
-            env.prepend_path("LDFLAGS", f"-L/opt/rocm-6.3.4/lib -lamdhip64 -lhsa-runtime64 -Wl,-rpath,/opt/rocm-6.3.4/lib {self.gtl_lib['ldflags'][0]} {self.gtl_lib['ldlibs'][0]} {self.gtl_lib['ldflags'][1]}")
+            env.prepend_path("LDFLAGS", f"-L/appl/lumi/SW/LUMI-25.09/G/EB/rocm/6.4.4/lib -lamdhip64 -lhsa-runtime64 -Wl,-rpath,/appl/lumi/SW/LUMI-25.09/G/EB/rocm/6.4.4/lib {self.gtl_lib['ldflags'][0]} {self.gtl_lib['ldlibs'][0]} {self.gtl_lib['ldflags'][1]}")
 
     def setup_dependent_run_environment(self, env, dependent_spec):
         if self.spec.satisfies("+gtl"):
