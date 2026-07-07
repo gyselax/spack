@@ -14,7 +14,7 @@ class Gmgpolar(CMakePackage):
     git = "https://github.com/SciCompMod/GMGPolar.git"
     url = "https://github.com/SciCompMod/GMGPolar/archive/refs/tags/v2.3.1.tar.gz"
 
-    maintainers("tpadioleau")
+    maintainers("tpadioleau", "mknaranja")
 
     license("Apache-2.0", checked_by="tpadioleau")
 
@@ -26,6 +26,8 @@ class Gmgpolar(CMakePackage):
 
     depends_on("kokkos@4.4.1:")
     depends_on("kokkos@:5")
+
+    patch("2.3.1-missing-header.patch", when="@2.3.1")
 
     def cmake_args(self):
         args = [
