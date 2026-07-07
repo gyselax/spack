@@ -27,7 +27,7 @@ class Gmgpolar(CMakePackage):
     depends_on("kokkos@4.4.1:")
     depends_on("kokkos@:5")
 
-    patch("2.3.1-missing-header.patch", when="@2.3.1")
+    patch("https://github.com/SciCompMod/GMGPolar/commit/9356b29a80848c9c88eaa748eb6ce4d8dc67028f.patch?full_index=1", when="@2.3.1")
 
     def cmake_args(self):
         args = [
