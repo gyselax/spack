@@ -12,14 +12,14 @@ class Gmgpolar(CMakePackage):
 
     homepage = "https://github.com/SciCompMod/GMGPolar"
     git = "https://github.com/SciCompMod/GMGPolar.git"
-    url = "https://github.com/SciCompMod/GMGPolar/archive/refs/tags/v2.2.0.tar.gz"
+    url = "https://github.com/SciCompMod/GMGPolar/archive/refs/tags/v2.3.1.tar.gz"
 
     maintainers("tpadioleau")
 
     license("Apache-2.0", checked_by="tpadioleau")
 
     version("main", branch="main", no_cache=True)
-    # version("2.2.0", sha256="")
+    version("2.3.1", sha256="c8e3ec83ec04bbe2c1e7d8f27e7be18a816ace04c3b3bae78c616f4d545c3382")
 
     depends_on("cxx", type="build")
     depends_on("cmake@3.12:", type="build")
