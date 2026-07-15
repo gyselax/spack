@@ -1,3 +1,5 @@
 repo_index:
   paths:
+  - spack_repo/adastra_v2026_06
+  - spack_repo/lumi_v2026_06
   - spack_repo/patches_v2026_06
