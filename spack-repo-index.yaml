@@ -1,5 +1,3 @@
 repo_index:
   paths:
-  - spack_repo/patches_adastra
-  - spack_repo/patches_lumi
-  - spack_repo/patches
+    - spack_repo/patches_common
