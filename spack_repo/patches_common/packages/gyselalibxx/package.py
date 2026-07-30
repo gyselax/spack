@@ -19,7 +19,7 @@ class Gyselalibxx(CMakePackage):
 
     license("MIT", checked_by="tpadioleau")
 
-    version("develop", branch="devel", no_cache=True)
+    version("develop", branch="installation", no_cache=True)
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
@@ -71,3 +71,12 @@ class Gyselalibxx(CMakePackage):
             args.append(self.define("CMAKE_CXX_COMPILER", self["kokkos"].kokkos_cxx))
 
         return args
+
+    def setup_build_environment(self, env):
+        env.set("OMPI_MCA_btl", "^tcp")
+        env.set("OMPI_MCA_oob", "^tcp")
+
+    def check(self):
+        ctest = which("ctest")
+        with working_dir(self.build_directory):
+            ctest("--output-on-failure")
