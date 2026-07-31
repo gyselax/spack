@@ -37,16 +37,16 @@ class Gyselalibxx(CMakePackage):
     depends_on("pdi@1.10.1:1")
 
     depends_on("googletest@1.12:1 +gmock", type="test")
-    depends_on("pdiplugin-decl-hdf5 +mpi", type="test")
-    depends_on("pdiplugin-mpi", type="test")
-    depends_on("pdiplugin-set-value", type="test")
-    depends_on("python@3", type="test")
-    depends_on("py-dask", type="test")
-    depends_on("py-h5py", type="test")
-    depends_on("py-matplotlib", type="test")
-    depends_on("py-numpy", type="test")
-    depends_on("py-pyyaml", type="test")
-    depends_on("py-xarray", type="test")
+    depends_on("pdiplugin-decl-hdf5@1.10.1:1 +mpi", type="test")
+    depends_on("pdiplugin-mpi@1.10.1:1", type="test")
+    depends_on("pdiplugin-set-value@1.10.1:1", type="test")
+    depends_on("python@3.11:3", type="test")
+    depends_on("py-dask@2026.3:2026", type="test")
+    depends_on("py-h5py@3.16:3", type="test")
+    depends_on("py-matplotlib@3.11:3", type="test")
+    depends_on("py-numpy@2.4:2", type="test")
+    depends_on("py-pyyaml@6", type="test")
+    depends_on("py-xarray@2026.4:2026", type="test")
 
     requires(
         "^kokkos +cuda_constexpr",
