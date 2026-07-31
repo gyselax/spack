@@ -11,7 +11,7 @@ class GyselaXpp(CMakePackage):
     """Gysela-X++"""
 
     homepage = "https://gyselax.github.io"
-    git = "https://gitlab.maisondelasimulation.fr/gysela-developpers/Gysela-X"
+    git = "git@gitlab.maisondelasimulation.fr:gysela-developpers/Gysela-X.git"
 
     maintainers("tpadioleau")
 
@@ -29,7 +29,22 @@ class GyselaXpp(CMakePackage):
     depends_on("pdi")
 
     depends_on("googletest@1.12:1 +gmock", type="test")
+    depends_on("pdiplugin-decl-hdf5 +mpi", type="test")
+    depends_on("pdiplugin-decl-netcdf +mpi", type="test")
+    depends_on("pdiplugin-mpi", type="test")
+    depends_on("pdiplugin-pycall", type="test")
     depends_on("python@3.11:3", type="test")
+    depends_on("py-dask +distributed", type="test")
+    depends_on("py-h5py", type="test")
+    depends_on("py-imageio", type="test")
+    depends_on("py-matplotlib", type="test")
+    depends_on("py-numpy", type="test")
+    depends_on("py-numexpr", type="test")
+    depends_on("py-netcdf4 +mpi", type="test")
+    depends_on("py-pip", type="test")
+    depends_on("py-psutil", type="test")
+    depends_on("py-xarray", type="test")
+    depends_on("py-pyyaml", type="test")
 
     def cmake_args(self):
         args = [
