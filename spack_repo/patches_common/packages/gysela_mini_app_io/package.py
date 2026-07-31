@@ -17,7 +17,7 @@ class GyselaMiniAppIo(CMakePackage):
 
     license("MIT", checked_by="tpadioleau")
 
-    version("develop", branch="wip-rework-cmake", no_cache=True)
+    version("develop", branch="external-gyselalibxx", no_cache=True)
 
     depends_on("cxx", type="build")
     depends_on("cmake@3.25:4", type="build")
