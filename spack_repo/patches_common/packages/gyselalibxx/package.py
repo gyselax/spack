@@ -21,7 +21,6 @@ class Gyselalibxx(CMakePackage):
 
     version("develop", branch="devel", no_cache=True)
 
-    depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("cmake@3.25:4", type="build")
 
