@@ -66,5 +66,7 @@ class Gyselalibxx(CMakePackage):
 
         if self.spec.satisfies("^kokkos+rocm"):
             args.append(self.define("CMAKE_CXX_COMPILER", self.spec["hip"].hipcc))
+        else:
+            args.append(self.define("CMAKE_CXX_COMPILER", self["kokkos"].kokkos_cxx))
 
         return args
