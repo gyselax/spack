@@ -20,6 +20,8 @@ class Gyselalibxx(CMakePackage):
     license("MIT", checked_by="tpadioleau")
 
     version("develop", branch="installation", no_cache=True)
+    version("gysela-xpp", commit="f52e7ffaf35aa5350a877add7e6261147a63879b")
+    version("gysela-mini-app-io", commit="96b4ad89c96c6fc4cf4b50fb76550ad14d7a9f23")
 
     depends_on("cxx", type="build")
     depends_on("cmake@3.25:4", type="build")
