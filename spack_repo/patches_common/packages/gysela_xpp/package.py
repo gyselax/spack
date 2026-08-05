@@ -35,6 +35,7 @@ class GyselaXpp(CMakePackage):
     depends_on("pdiplugin-pycall", type="test")
     depends_on("python@3.11:3", type="test")
     depends_on("py-dask +distributed", type="test")
+    depends_on("py-gysmc", type="test")
     depends_on("py-h5py", type="test")
     depends_on("py-imageio", type="test")
     depends_on("py-matplotlib", type="test")
