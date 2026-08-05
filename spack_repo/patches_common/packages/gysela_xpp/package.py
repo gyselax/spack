@@ -52,6 +52,7 @@ class GyselaXpp(CMakePackage):
             self.define("GYSELAX_BUILD_DOCUMENTATION", False),
             self.define("GYSELAX_BUILD_SIMULATIONS", True),
             self.define("GYSELAX_BUILD_TESTING", self.run_tests),
+            self.define("GYSELAX_USE_EXTERNAL_GYSELALIBXX", True),
         ]
 
         if self.spec.satisfies("^kokkos+rocm"):
