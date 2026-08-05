@@ -47,6 +47,9 @@ class GyselaXpp(CMakePackage):
     depends_on("py-xarray", type="test")
     depends_on("py-pyyaml", type="test")
 
+    def setup_build_environment(self, env):
+        env.prepend_path("PYTHONPATH", join_path(self.stage.source_path, "processing"))
+
     def cmake_args(self):
         args = [
             self.define("GYSELAX_BUILD_DOCUMENTATION", False),
