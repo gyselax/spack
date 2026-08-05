@@ -23,7 +23,7 @@ class GyselaMiniAppIo(CMakePackage):
     depends_on("cmake@3.25:4", type="build")
 
     depends_on("ddc +pdi")
-    depends_on("gyselalibxx@gysela-mini-app-io")
+    depends_on("gyselalibxx")
     depends_on("mpi")
     depends_on("paraconf")
     depends_on("pdi")
