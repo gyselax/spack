@@ -22,11 +22,7 @@ class GyselaXpp(CMakePackage):
     depends_on("cxx", type="build")
     depends_on("cmake@3.25:4", type="build")
 
-    depends_on("ddc +pdi")
     depends_on("gyselalibxx")
-    depends_on("mpi")
-    depends_on("paraconf")
-    depends_on("pdi")
 
     depends_on("googletest@1.12:1 +gmock", type="test")
     depends_on("pdiplugin-decl-hdf5 +mpi", type="test")
