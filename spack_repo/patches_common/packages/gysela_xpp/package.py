@@ -30,20 +30,7 @@ class GyselaXpp(CMakePackage):
     depends_on("pdiplugin-mpi", type="test")
     depends_on("pdiplugin-pycall", type="test")
     depends_on("python@3.11:3", type="test")
-    depends_on("py-dask +distributed", type="test")
-    depends_on("py-gysmc", type="test")
-    depends_on("py-h5py", type="test")
-    depends_on("py-imageio", type="test")
-    depends_on("py-matplotlib", type="test")
-    depends_on("py-numpy", type="test")
-    depends_on("py-numexpr", type="test")
-    depends_on("py-netcdf4 +mpi", type="test")
-    depends_on("py-psutil", type="test")
-    depends_on("py-xarray", type="test")
-    depends_on("py-pyyaml", type="test")
-
-    def setup_build_environment(self, env):
-        env.prepend_path("PYTHONPATH", join_path(self.stage.source_path, "processing"))
+    depends_on("py-gysela-xpp", type="test")
 
     def cmake_args(self):
         args = [
