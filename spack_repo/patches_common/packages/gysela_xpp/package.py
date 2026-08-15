@@ -42,7 +42,6 @@ class GyselaXpp(CMakePackage):
     depends_on("py-numpy", type="test")
     depends_on("py-numexpr", type="test")
     depends_on("py-netcdf4 +mpi", type="test")
-    depends_on("py-pip", type="test")
     depends_on("py-psutil", type="test")
     depends_on("py-xarray", type="test")
     depends_on("py-pyyaml", type="test")
