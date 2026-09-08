@@ -19,7 +19,7 @@ class Gyselalibxx(CMakePackage):
 
     license("MIT", checked_by="tpadioleau")
 
-    version("develop", branch="devel", no_cache=True)
+    version("develop", branch="fix-installation", no_cache=True)
 
     depends_on("cxx", type="build")
     depends_on("cmake@3.25:4", type="build")
