@@ -29,9 +29,7 @@ class GyselaMiniAppIo(CMakePackage):
     depends_on("pdi")
 
     def cmake_args(self):
-        args = [
-            self.define("GYSELA_MINI_APP_BUILD_SIMULATIONS", True),
-        ]
+        args = []
 
         if self.spec.satisfies("^kokkos+rocm"):
             args.append(self.define("CMAKE_CXX_COMPILER", self.spec["hip"].hipcc))
