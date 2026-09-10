@@ -29,7 +29,7 @@ class GyselaMiniAppIo(CMakePackage):
     depends_on("pdi")
 
     def cmake_args(self):
-        args = []
+        args = [self.define("GYSELA_MINI_APP_USE_EXTERNAL_GYSELALIBXX", True)]
 
         if self.spec.satisfies("^kokkos+rocm"):
             args.append(self.define("CMAKE_CXX_COMPILER", self.spec["hip"].hipcc))
