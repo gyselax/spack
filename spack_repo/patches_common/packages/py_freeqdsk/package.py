@@ -14,7 +14,7 @@ class PyFreeqdsk(PythonPackage):
     homepage = "https://freeqdsk.readthedocs.io/"
     git = "https://github.com/freegs-plasma/FreeQDSK.git"
     url = "https://github.com/freegs-plasma/FreeQDSK/archive/refs/tags/v0.5.2.tar.gz"
-    # pypi = ""
+    pypi = "freeqdsk/freeqdsk-0.5.2.tar.gz"
 
     license("MIT", checked_by="tpadioleau")
 
