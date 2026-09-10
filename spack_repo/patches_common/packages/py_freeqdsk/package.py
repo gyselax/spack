@@ -18,7 +18,7 @@ class PyFreeqdsk(PythonPackage):
     license("MIT", checked_by="tpadioleau")
 
     version("main", branch="main")
-    version("0.5.2", sha256="a43a0aadfc2d68a03523ecafd6c542f3ddef256b20b7b02fcb36eaace85026ab")
+    version("0.5.2", sha256="7b40430f8368a9ac130d441d43aa50944b4165c8c44fc49b752836bd8e822b4b")
 
     depends_on("py-setuptools@65:", type="build")
     depends_on("py-setuptools-scm@8: +toml", type="build")
