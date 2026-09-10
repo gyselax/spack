@@ -24,5 +24,10 @@ class PyGysmc(PythonPackage):
     depends_on("py-setuptools-scm@8: +toml", type="build")
 
     depends_on("python@3.9:", type=("build", "run"))
+    depends_on("py-freeqdsk", type=("build", "run"))
+    depends_on("py-gvec", type=("build", "run"))
+    depends_on("py-h5py", type=("build", "run"))
+    depends_on("py-matplotlib", type=("build", "run"))
     depends_on("py-numpy@1.22:", type=("build", "run"))
     depends_on("py-scipy@1.3:", type=("build", "run"))
+    depends_on("py-xarray", type=("build", "run"))
