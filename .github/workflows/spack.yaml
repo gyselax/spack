@@ -38,6 +38,7 @@ jobs:
           spack --env . config add config:install_tree:padded_length:128
           spack --env . repo update
           spack --env . buildcache list
+          spack --env . mirror set --autopush local-buildcache
       - name: Install
         shell: spack-bash {0}
         run: |
