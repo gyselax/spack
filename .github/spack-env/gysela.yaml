@@ -49,32 +49,7 @@ spack:
     builtin:
       branch: develop
   specs:
-    - 'ddc'
-    - 'fmt'
-    - 'ginkgo'
-    - 'gmgpolar'
-    - 'gyselalibxx'
     - 'gysela-mini-app-io'
-    - 'hdf5 +mpi +shared'
-    - 'kokkos +tests'
-    - 'kokkos-fft'
-    - 'kokkos-tools'
-    - 'kokkos-kernels +execspace_serial'
-    - 'koliop'
-    - 'mdspan@stable'
-    - 'netcdf-c'
-    - 'openblas'
-    - 'paraconf'
-    # - 'pdi'
-    # - 'pdiplugin-decl-hdf5'
-    # - 'pdiplugin-decl-netcdf'
-    # - 'pdiplugin-mpi'
-    # - 'pdiplugin-pycall'
-    # - 'pdiplugin-serialize'
-    # - 'pdiplugin-set-value'
-    # - 'pdiplugin-trace'
-    # - 'pdiplugin-user-code'
-    - 'spdlog'
   view:
     default:
       projections:
