@@ -18,7 +18,7 @@ class PyGyselaXpp(PythonPackage):
 
     license("MIT", checked_by="tpadioleau")
 
-    version("develop", branch="external-gyselalibxx", no_cache=True)
+    version("develop", branch="devel", no_cache=True)
 
     build_directory = "processing"
 
