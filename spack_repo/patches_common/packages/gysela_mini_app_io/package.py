@@ -11,7 +11,7 @@ class GyselaMiniAppIo(CMakePackage):
     """Mini-application for IO testing and performance benchmarking"""
 
     homepage = "https://gyselax.github.io/gyselalibxx/"
-    git = "https://github.com/tpadioleau/gysela-mini-app_io.git"
+    git = "https://github.com/gyselax/gysela-mini-app_io.git"
 
     maintainers("tpadioleau")
 
