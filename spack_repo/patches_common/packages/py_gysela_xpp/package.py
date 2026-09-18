@@ -30,6 +30,7 @@ class PyGyselaXpp(PythonPackage):
     depends_on("py-h5py", type=("build", "run"))
     depends_on("py-imageio", type=("build", "run"))
     depends_on("py-matplotlib", type=("build", "run"))
+    depends_on("py-netcdf4", type=("build", "run"))
     depends_on("py-numexpr", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-psutil", type=("build", "run"))
