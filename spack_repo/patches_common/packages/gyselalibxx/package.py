@@ -13,7 +13,7 @@ class Gyselalibxx(CMakePackage):
 
     homepage = "https://gyselax.github.io/gyselalibxx/"
     git = "https://github.com/gyselax/gyselalibxx.git"
-    url = "https://github.com/gyselax/gyselalibxx/archive/refs/tags/v0.7.0.tar.gz"
+    url = "https://github.com/gyselax/gyselalibxx/archive/refs/tags/v0.8.0.tar.gz"
 
     maintainers("EmilyBourne", "tpadioleau")
 
