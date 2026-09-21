@@ -59,7 +59,8 @@ class Gyselalibxx(CMakePackage):
         args = [
             self.define("GYSELALIBXX_BUILD_SIMULATIONS", self.run_tests),
             self.define("GYSELALIBXX_BUILD_TESTING", self.run_tests),
-            self.define("GYSELALIBXX_ENABLE_DEPRECATED", False),
+            self.define("GYSELALIBXX_COMPILE_SOURCE", True),
+            self.define("GYSELALIBXX_ENABLE_DEPRECATED", True),
         ]
 
         if self.spec.satisfies("^kokkos+cuda"):
