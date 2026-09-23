@@ -49,3 +49,8 @@ class PyGvec(PythonPackage):
     depends_on("py-tomlkit", type=("build", "run"))
     depends_on("py-tqdm", type=("build", "run"))
     depends_on("py-xarray", type=("build", "run"))
+
+    # Removes march=native
+    # - it does not allow users to control the target architecture
+    # - it breaks gfortran on macOS
+    patch("march.patch", when="@1.4.1")
