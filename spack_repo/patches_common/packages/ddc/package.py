@@ -137,7 +137,7 @@ class Ddc(CMakePackage):
             self.define_from_variant("DDC_BUILD_DOUBLE_PRECISION", "double_precision"),
         ]
 
-        if self.spec.satifies("@:0.15"):
+        if self.spec.satisfies("@:0.15"):
             args.append(self.define("DDC_Kokkos_DEPENDENCY_POLICY", "INSTALLED"))
             if self.run_tests:
                 args.append(self.define("DDC_GTest_DEPENDENCY_POLICY", "INSTALLED"))
