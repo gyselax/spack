@@ -14,7 +14,7 @@ class PyScimba(PythonPackage):
     homepage = "https://www.scimba.org"
     pypi = "scimba/scimba-1.3.4.tar.gz"
 
-    # maintainers("")
+    maintainers("tpadioleau")
 
     license("MIT", checked_by="tpadioleau")
 
@@ -24,16 +24,15 @@ class PyScimba(PythonPackage):
 
     depends_on("py-setuptools@61.2:", type="build")
 
-    with default_args(type=("build", "run")):
-        depends_on("python@3.10:", when="@1.0.0:")
-        depends_on("py-matplotlib")
-        depends_on("py-numpy")
-        depends_on("py-scipy")
-        depends_on("py-tqdm")
-        depends_on("py-torch@2.9:")
+    depends_on("python@3.10:", when="@1.0.0:", type=("build", "run"))
+    depends_on("py-matplotlib", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-scipy", type=("build", "run"))
+    depends_on("py-tqdm", type=("build", "run"))
+    depends_on("py-torch@2.9:", type=("build", "run"))
 
-        with when("+jax"):
-            depends_on("py-jax@0.6.2:")
-            depends_on("py-equinox@0.13:")
-            depends_on("py-optax")
-            depends_on("py-jax-tqdm")
+    with when("+jax"):
+        depends_on("py-jax@0.6.2:", type=("build", "run"))
+        depends_on("py-equinox@0.13:", type=("build", "run"))
+        depends_on("py-optax", type=("build", "run"))
+        depends_on("py-jax-tqdm", type=("build", "run"))
