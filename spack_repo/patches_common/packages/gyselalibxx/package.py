@@ -28,7 +28,7 @@ class Gyselalibxx(CMakePackage):
     depends_on("ddc +fft +pdi +splines")
     depends_on("ddc@0.15", when="@0.8:")
     depends_on("ginkgo@1.8:1")
-    depends_on("gmgpolar@2.3.1:2")
+    depends_on("gmgpolar@2.3")
     depends_on("kokkos@4.4.1:5")
     depends_on("kokkos-kernels@4.5.1:5")
     depends_on("koliop@0.2", when="@0.8:")
