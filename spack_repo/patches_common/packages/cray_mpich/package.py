@@ -43,6 +43,9 @@ class CrayMpich(MpichEnvironmentModifications, Package, CudaPackage, ROCmPackage
     depends_on("cray-pmi")
     depends_on("libfabric")
 
+    depends_on("hip ~cuda +rocm", when="+rocm")
+    depends_on("hsa-rocr-dev", when="+rocm")
+
     # cray-mpich 8.1.7: features MPI compiler wrappers
     variant("wrappers", default=True, when="@8.1.7:", description="enable MPI wrappers")
     variant("gtl", default=True, when="+rocm", description="Enable GPU Accelerated Transports")
@@ -122,8 +125,9 @@ class CrayMpich(MpichEnvironmentModifications, Package, CudaPackage, ROCmPackage
                 spec.mpif77 = dependent_spec["fortran"].package.fortran
 
     def setup_dependent_build_environment(self, env, dependent_spec):
-        if self.spec.satisfies("+gtl"):
-            env.prepend_path("LDFLAGS", f"-L/opt/rocm-6.3.3/lib -lamdhip64 -lhsa-runtime64 -Wl,-rpath,/opt/rocm-6.3.3/lib {self.gtl_lib['ldflags'][0]} {self.gtl_lib['ldlibs'][0]} {self.gtl_lib['ldflags'][1]}")
+        if self.spec.satisfies("+gtl") and self.gtl_lib:
+            # append_flags (space separated), not prepend_path (':' separated).
+            env.append_flags("LDFLAGS", " ".join(self.gtl_lib["ldflags"] + self.gtl_lib["ldlibs"]))
 
     def setup_dependent_run_environment(self, env, dependent_spec):
         if self.spec.satisfies("+gtl"):
@@ -174,16 +178,23 @@ class CrayMpich(MpichEnvironmentModifications, Package, CudaPackage, ROCmPackage
         #   /opt/cray/pe/mpich/8.1.28/ofi/<vendor>/<vendor_version>
         #   /opt/cray/pe/mpich/8.1.28/ofi/<vendor>/<vendor_version>/../../../gtl/lib
 
+        # Supported GPU transport layers, per accelerator "kind".
+        #   lib:      GTL shared library (without the lib prefix handling)
+        #   variant:  spack variant holding the device architectures
+        #   values:   architectures for which Cray ships a GTL
+        #   runtime:  (spack dependency, [link libraries]) the GTL depends on
         gtl_kinds = {
             "cuda": {
                 "lib": "libmpi_gtl_cuda",
                 "variant": "cuda_arch",
                 "values": {"70", "80", "90"},
+                "runtime": [],
             },
             "rocm": {
                 "lib": "libmpi_gtl_hsa",
                 "variant": "amdgpu_target",
                 "values": {"gfx906", "gfx908", "gfx90a", "gfx940", "gfx942"},
+                "runtime": [("hip", ["amdhip64"]), ("hsa-rocr-dev", ["hsa-runtime64"])],
             },
         }
 
@@ -228,12 +239,20 @@ class CrayMpich(MpichEnvironmentModifications, Package, CudaPackage, ROCmPackage
                     os.path.basename(gtl_library_fullpath).split("lib")[1]
                 )[0]
 
+                # Vendor runtime (e.g. hip / hsa-rocr-dev for ROCm) the GTL links
+                # against, taken from the prefixes of the spack dependencies.
+                ldflags, ldlibs = [], []
+                for dep, dep_libs in gtl_kind["runtime"]:
+                    libdir = self.spec[dep].prefix.lib
+                    ldflags += [f"-L{libdir}", f"-Wl,-rpath,{libdir}"]
+                    ldlibs += [f"-l{name}" for name in dep_libs]
+
+                ldflags += [
+                    f"-L{gtl_library_directory}",
+                    f"-Wl,-rpath,{gtl_library_directory}",
+                ]
+                ldlibs += [f"-l{gtl_library_name}"]
+
                 # Early break. Only one GTL can be active at a given time.
-                return {
-                    "ldflags": [
-                        f"-L{gtl_library_directory}",
-                        f"-Wl,-rpath,{gtl_library_directory}",
-                    ],
-                    "ldlibs": [f"-l{gtl_library_name}"],
-                }
+                return {"ldflags": ldflags, "ldlibs": ldlibs}
         return {}
