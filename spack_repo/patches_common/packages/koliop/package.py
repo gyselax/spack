@@ -20,6 +20,7 @@ class Koliop(CMakePackage):
     license("MIT", checked_by="tpadioleau")
 
     version("master", branch="master", no_cache=True)
+    version("1.1.0", sha256="5f42c7d949c4582de64cca459f529e3e07f89b9b26931aa6bdda510ef754edfe")
     version("1.0.0", sha256="e9d2a18b69c9c023fa6d0bbfd6bab3d2600a3d5ef5349ade947a483ae3dfd764")
     version("0.2.1", sha256="18d6efc146704f47057e6ce4175ef1aa930605c5ffb778885cafe3f1cd5083fd")
     version("0.2.0", sha256="9217d52d153e4d4a309fc1635f573c56f5fd44a99f58a1afbf6fe603c503104f")
