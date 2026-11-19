@@ -12,27 +12,29 @@ class PyScimba(PythonPackage):
     """This library implements some common tools for scientific machine learning."""
 
     homepage = "https://www.scimba.org"
-    pypi = "scimba/scimba-1.3.4.tar.gz"
+    pypi = "scimba/scimba-1.4.2.tar.gz"
 
     maintainers("tpadioleau")
 
     license("MIT", checked_by="tpadioleau")
 
-    version("1.3.4", sha256="7b555633c577c043b73417f86a85ca2c71837e4310fc114de7ada31a1f60a755")
+    version("1.4.2", sha256="b689fc75074aa6ffbb483d6296e0490eac1c06ff160c4888c450136d14c513b3")
 
-    variant("jax", default=False, description="Install the experimental JAX backend")
+    variant("jax", default=False, description="Install the JAX backend")
+    variant("torch", default=False, description="Install the PyTorch backend")
 
     depends_on("py-setuptools@61.2:", type="build")
 
-    depends_on("python@3.10:", when="@1.0.0:", type=("build", "run"))
+    depends_on("python@3.11:", type=("build", "run"))
     depends_on("py-matplotlib", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-scipy", type=("build", "run"))
     depends_on("py-tqdm", type=("build", "run"))
-    depends_on("py-torch@2.9:", type=("build", "run"))
+
+    with when("+torch"):
+        depends_on("py-torch@2.9:", type=("build", "run"))
 
     with when("+jax"):
         depends_on("py-jax@0.6.2:", type=("build", "run"))
-        depends_on("py-equinox@0.13:", type=("build", "run"))
-        depends_on("py-optax", type=("build", "run"))
+        depends_on("py-orbax-checkpoint", type=("build", "run"))
         depends_on("py-jax-tqdm", type=("build", "run"))
